@@ -1,0 +1,34 @@
+windows文件结构:
+分区 C: 系统
+往下D: E: ...为其他分区
+
+C:
+|--Windows 系统文件
+|--Program Files 安装软件(64位)
+|--Program Files (x86) 安装软件(32位)
+|--user 用户
+|	|--%username% 用户文件夹
+
+linux文件结构:
+根目录分支 非系统分区另外挂载
+/
+|--boot 系统内核
+|--bin 用户指令
+|--sbin root用户指令
+|--dev 外部设备映射
+|--etc 配置文件
+|--home 用户主目录
+|	|%username% 用户主文件夹 即~
+|--root root用户主文件夹 即~
+|--lib 动态链接库类似.dll
+|--lost+found 恢复文件
+|--media 外部存储设备挂载点
+|--mnt 临时设备挂载点
+|--opt 软件安装目录
+|--proc 系统内存映射
+|--tmp 临时文件
+|--var 日志软件
+|--usr 软件安装目录(类似program Files)
+|	|bin 用户应用程序
+|	|sbin root用户应用程序
+|	|src 内核源代码

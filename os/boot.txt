@@ -1,0 +1,15 @@
+开机->bios检查->init->检查runlevel->login->完成
+
+runlevel:
+Deb系|Rpm系
+0 关机 不能设置为默认0
+1 单用户命令行模式
+2 带GUI的多用户模式|多用户命令行模式 无NFS
+3 带GUI的多用户模式|多用户命令行模式
+4 带GUI的多用户模式|未定义
+5 带GUI的多用户模式
+6 重启 不能设置为默认6
+S 单用户恢复模式
+
+命令:
+`sudo telinit <runlevel>`
