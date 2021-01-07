@@ -4,6 +4,8 @@ ctrl+alt+t 呼出命令行(linux)
 
 `man [command]` 帮助  
 
+> 部分命令并非来自(部分发行版的)自带软件 关于安装 请查看[包管理器](#包管理器)
+
 ## 导览
 - [进程与服务](#进程与服务)
 - [用户权限](#用户权限)
@@ -16,10 +18,10 @@ ctrl+alt+t 呼出命令行(linux)
 
 ## 进程与服务
 `ps` 查看当前终端的所有进程  
--a 查看当前设备的所有终端的进程
--x 显示所有进程 不区别设备与终端  
--u 以用户为基准进行显示  
--e或-A 显示所有进程  
+`-a` 查看当前设备的所有终端的进程
+`-x` 显示所有进程 不区别设备与终端  
+`-u` 以用户为基准进行显示  
+`-e` 或 `-A` 显示所有进程  
 
 `ps -aux` 推荐配合 [grep](#正则表达式\(regular-expression\)) 使用
 
@@ -44,8 +46,9 @@ ctrl+alt+t 呼出命令行(linux)
 
 `ls [pos]` 文件列表  
 `dir [pos]` 同上(windows cmd only)  
--l 详细列表 (ll即ls -l)  
--a 所有文件(包括.开头的隐藏文件)  
+`-l` 详细列表 (ll即ls -l)  
+`-a` 所有文件(包括.开头的隐藏文件)  
+`-h` 自动判断使用单位(k m g t)  
 
 - exp  
 
@@ -139,21 +142,35 @@ chmod 754 dos.txt 或者chmod u=rwx,g=rx,o=r dos.txt
 `df` 列出挂载磁盘信息  
 `fdisk` 列出各分区信息  
 
+更多请见[HardDisk.md](../command/HardDisk.md)
+
 ## 系统  
 `shutdown [time]` 关机 root限定  
--r 重启(同reboot) -c 取消  
+`-r` 重启(同reboot) `-c` 取消  
 [time]可选单位 默认分钟(windows默认为秒) now为立刻(同halt) hh:mm准确时间  
-`halt`或 -n 立刻关机 root限定  
+`halt`或 `-n` 立刻关机 root限定  
 reboot [time] 重启 root限定  
 
 > 如果在gui桌面下输入 那么不要求为root用户
-
--h 自动判断使用单位(k m g t)  
 
 `sudo update-rc.d [file] defaults 90` 将指定文件加入系统启动项  
 
 `hostnamectl` 
 `hostnamectl set-hostname [name]`
+
+## 配置
+`xrandr` 列出显示设备信息 --help 帮助
+--output 指定设备 --mode 设置分辨率 --rate 设置刷新率
+> 设置刷新率可能需要同时设置分辨率
+`arandr` 简易gui的xrandr
+
+`volumeicon` 状态栏增加音量调节按钮
+`mate-power-manager` 电源管理
+`feh --bg-fill [path]` 设置壁纸 多屏幕则按照顺序 用空格分割 分别指定路径
+
+`kbdrate` 键盘自动重复输入(即按住按键自动连点的功能)
+`-r [int]` 调节自动输入速度 `-d [int]` 调节自动输入需要的最低按住时长
+`atkbd.softrepeat=1` 在内核命令行中添加可解除以下限制: 最低250ms delay 以及 最大30cps
 
 ## 网络  
 `ifconfig` 输出ip信息  
@@ -187,17 +204,19 @@ reboot [time] 重启 root限定
 `nmcli` 终端指令操作
 
 ## 包管理器
-debian系linux安装软件包:  
-`dpkg [name]` 目标为.deb  
--i 安装软件包 -r 删除软件包 -P 删除软件包同时删除配置文件 -L 显示软件包关联文件  
-dpkg  
--l 显示已安装软件包列表  
+- debian系  
+`dpkg [app]` 目标为.deb 本地安装
+`-i` 安装软件包 `-r` 删除软件包 `-P` 删除软件包同时删除配置文件 `-L` 显示软件包关联文件 `-l` 显示已安装软件包列表  
 
-
-`apt [command] [name]`  
+`apt [command] [name]` 远程仓库安装
 install remove顾名思义  
 或者: `apt-get` 类似`apt` 但较老  
 
-redhat系安装软件包  
+- redhat系安装软件包  
 `yum`
 `rpm`
+
+- arch系安装软件包
+`pacman [app]`
+`-S` sync 安装 `-R` remove 卸载 `-U` upgrade 升级
+`-Syy` 更新aur(arch用户仓库) `-Syu` 滚动更新软件包
