@@ -5,6 +5,7 @@ ctrl+alt+t 呼出命令行(linux)
 `man [command]` 帮助  
 
 > 部分命令并非来自(部分发行版的)自带软件 关于安装 请查看[包管理器](#包管理器)
+> 关于常用软件 可以查看my-linux仓库中的init.txt
 
 ## 导览
 - [进程与服务](#进程与服务)
@@ -142,7 +143,7 @@ chmod 754 dos.txt 或者chmod u=rwx,g=rx,o=r dos.txt
 `df` 列出挂载磁盘信息  
 `fdisk` 列出各分区信息  
 
-更多请见[HardDisk.md](../command/HardDisk.md)
+更多请见[HardDisk.md](../command/HardDisk.md)  
 
 ## 系统  
 `shutdown [time]` 关机 root限定  
@@ -155,8 +156,8 @@ reboot [time] 重启 root限定
 
 `sudo update-rc.d [file] defaults 90` 将指定文件加入系统启动项  
 
-`hostnamectl` 
-`hostnamectl set-hostname [name]`
+`hostnamectl` 系统信息  
+`hostnamectl set-hostname [name]` 更改电脑名称  
 
 ## 配置
 `xrandr` 列出显示设备信息 --help 帮助
@@ -200,23 +201,23 @@ reboot [time] 重启 root限定
 
 - 使用
 `nm-connection-editor`  gui操作 最简单  
-`nmtui` 文字ui操作 推荐使用
-`nmcli` 终端指令操作
+`nmtui` 文字ui操作 推荐使用  
+`nmcli` 终端指令操作  
 
 ## 包管理器
 - debian系  
-`dpkg [app]` 目标为.deb 本地安装
+`dpkg [app]` 目标为.deb 本地安装  
 `-i` 安装软件包 `-r` 删除软件包 `-P` 删除软件包同时删除配置文件 `-L` 显示软件包关联文件 `-l` 显示已安装软件包列表  
 
-`apt [command] [name]` 远程仓库安装
+`apt [command] [name]` 远程仓库安装  
 install remove顾名思义  
 或者: `apt-get` 类似`apt` 但较老  
 
 - redhat系安装软件包  
-`yum`
-`rpm`
+`yum`  
+`rpm`  
 
 - arch系安装软件包
-`pacman [app]`
-`-S` sync 安装 `-R` remove 卸载 `-U` upgrade 升级
-`-Syy` 更新aur(arch用户仓库) `-Syu` 滚动更新软件包
+`pacman [app]`  
+`-S` sync 安装 `-R` remove 卸载 `-U` upgrade 升级  
+`-Syy` 更新aur(arch用户仓库) `-Syu` 滚动更新软件包  

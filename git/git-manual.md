@@ -3,26 +3,34 @@
 [TOC]
 ## 获取仓库
 
-`git init` 创建仓库
+- `git init`  
+  创建仓库  
 
-`git clone [url] [path]` 拷贝项目 到指定目录(可选)
+- `git clone [url] [path]`  
+  拷贝项目 到指定目录(可选)  
 
 ## 提交内容
-`git add [file]`添加文件 写入缓存区  
+- `git add [file]`  
+  添加文件 写入缓存区  
 
-`git rm [file]`删除缓存区，版本区，本地文件 --cached 只删除缓存区文件(推荐) -r 允许删除文件夹
+- `git rm [file]`  
+  删除缓存区，版本区，本地文件 --cached 只删除缓存区文件(推荐) -r 允许删除文件夹  
 
-`git commit` 提交到仓库并备注信息 -a 不备注 -m 简易备注 后加[string] (`git commit -am` 直接提交 但不推荐)
-	--amend 重新上传最近上传
+- `git restore [file]`  
+  放弃缓存区以及文件内容  
+
+- `git commit`  
+  提交到仓库并备注信息 -a 不备注 -m 简易备注 后加[string] (`git commit -am` 直接提交 但不推荐)  
+	--amend 重新上传最近上传  
 
 ## 检查历史
-`git status [path]` 查看修改 默认仓库根目录(无论在仓库哪里) -s简短输出
+- `git status [path]` 查看修改 默认仓库根目录(无论在仓库哪里) -s简短输出
 
-`git diff` 查看详细修改信息 未缓存 --cached查看已缓存改动 HEAD查看所有 --stat仅摘要
+- `git diff` 查看详细修改信息 未缓存 --cached查看已缓存改动 HEAD查看所有 --stat仅摘要
 
-`git log` 查看提交历史 --oneline简洁输出 --graph 查看出现分支 --reverse 逆向日期显示(从老到新) --all 全部分支  
+- `git log` 查看提交历史 --oneline简洁输出 --graph 查看出现分支 --reverse 逆向日期显示(从老到新) --all 全部分支  
 	--auther=[name]查看指定用户 --since --before --until --after [date]日期范围 --decorate查看标签
-推荐`git log --oneline --graph --all`
+> 推荐`git log --oneline --graph --all`
 
 ## 分支管理 
 - `git branch [name]`  
