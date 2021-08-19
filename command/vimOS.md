@@ -144,3 +144,5 @@ bindsym $mod+e layout toggle split
 https://www.bilibili.com/video/av55390167  
 https://www.jianshu.com/p/99e51eb15abc
 
+## vim/neovim
+请见隔壁vim教程笔记

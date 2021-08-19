@@ -173,6 +173,26 @@ reboot [time] 重启 root限定
 `-r [int]` 调节自动输入速度 `-d [int]` 调节自动输入需要的最低按住时长
 `atkbd.softrepeat=1` 在内核命令行中添加可解除以下限制: 最低250ms delay 以及 最大30cps
 
+`sudo timedatectl set-local-rtc 1`
+解决windows linux双系统切换时间不一致的问题
+
+关闭鼠标加速
+创建"/etc/X11/xorg.conf.d/50-mouse-acceleration.conf"文件并添加：
+```
+Section "InputClass"
+    Identifier "My Mouse"
+    MatchIsPointer "yes"
+    Option "AccelerationProfile" "-1"
+    Option "AccelerationScheme" "none"
+EndSection
+```
+
+修改按键延时和频率(键盘按住按键一段时间会持续输入)
+`xset r rate [delay] [rate]`
+
+> 参考:
+> https://pengzou89.github.io/2018/03/30/Manjaro%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE%EF%BC%88%E4%BA%8C%EF%BC%89/
+> https://wiki.archlinux.org/index.php/Linux_console_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)/Keyboard_configuration_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87)
 ## 网络  
 `ifconfig` 输出ip信息  
 `ipconfig` 同上(windows cmd only)  
@@ -217,7 +237,33 @@ install remove顾名思义
 `yum`  
 `rpm`  
 
-- arch系安装软件包
-`pacman [app]`  
-`-S` sync 安装 `-R` remove 卸载 `-U` upgrade 升级  
-`-Syy` 更新aur(arch用户仓库) `-Syu` 滚动更新软件包  
+- arch系安装软件包 https://www.jianshu.com/p/ea651cdc5530
+`pacman`
+1. 更新系统
+在 Archlinux 中，使用一条命令即可对整个系统进行更新：
+pacman -Syu
+如果你已经使用pacman -Sy将本地的包数据库与远程的仓库进行了同步，也可以只执行：pacman -Su
+
+2. 安装包
+- pacman -S 包名：例如，执行 pacman -S firefox 将安装 Firefox。你也可以同时安装多个包，
+只需以空格分隔包名即可。
+- pacman -Sy 包名：与上面命令不同的是，该命令将在同步包数据库后再执行安装。
+- pacman -Sv 包名：在显示一些操作信息后执行安装。
+- pacman -U：安装本地包，其扩展名为 pkg.tar.gz 或安装一个远程包（不在 pacman 配置的源里面）
+
+3. 删除包
+- pacman -R 包名：该命令将只删除包，保留其全部已经安装的依赖关系
+- pacman -Rs 包名：在删除包的同时，删除其所有没有被其他已安装软件包使用的依赖关系
+- pacman -Rsc 包名：在删除包的同时，删除所有依赖这个软件包的程序
+- pacman -Rd 包名：在删除包时不检查依赖。
+
+4. 搜索包
+- pacman -Ss 关键字：在仓库中搜索含关键字的包。
+- pacman -Qs 关键字： 搜索已安装的包。
+- pacman -Qi 包名：查看有关包的详尽信息。
+- pacman -Ql 包名：列出该包的文件。
+
+5. 其他用法
+- pacman -Sw 包名：只下载包，不安装。
+- pacman -Sc：清理未安装的包文件，包文件位于 /var/cache/pacman/pkg/ 目录。
+- pacman -Scc：清理所有的缓存文件。
